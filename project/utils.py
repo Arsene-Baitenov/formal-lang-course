@@ -12,14 +12,12 @@ def get_graph(name: str) -> Graph:
 
 
 def create_labeled_two_cycles_graph(
-        num_first_cycle_nodes: int,
-        num_second_cycle_nodes: int,
-        labels: Tuple[str, str],
-        path: str
+    num_first_cycle_nodes: int,
+    num_second_cycle_nodes: int,
+    labels: Tuple[str, str],
+    path: str,
 ) -> None:
     graph = cfpq_data.labeled_two_cycles_graph(
-        n=num_first_cycle_nodes,
-        m=num_second_cycle_nodes,
-        labels=labels
+        n=num_first_cycle_nodes, m=num_second_cycle_nodes, labels=labels
     )
     nx.nx_pydot.write_dot(graph, path)
