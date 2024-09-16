@@ -3,7 +3,7 @@ from typing import List, Any
 from pathlib import Path
 import networkx as nx
 
-from project.utils import get_graph, create_labeled_two_cycles_graph
+from project.graph_utils import get_graph, create_labeled_two_cycles_graph
 
 
 @pytest.mark.parametrize(
