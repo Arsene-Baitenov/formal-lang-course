@@ -3,7 +3,8 @@ from typing import List, Any
 from pathlib import Path
 import networkx as nx
 
-from project.graph_utils import get_graph, create_labeled_two_cycles_graph
+from project.graph import Graph
+from project.graph_utils import get_graph, create_labeled_two_cycles_graph, graph_to_nfa
 
 
 @pytest.mark.parametrize(
@@ -84,3 +85,24 @@ def test_create_labeled_two_cycles_graph():
     )
 
     assert nx.is_isomorphic(actual_graph, expected_graph)
+
+
+@pytest.mark.usefixtures("resource_setup")
+def test_labeled_two_cycles_graph_to_nfa():
+    path = str(Path(dir_name, "labeled_two_cycles_graph"))
+    num_first_cycle_nodes = 2
+    num_second_cycle_nodes = 3
+    labels = ("a", "b")
+
+    create_labeled_two_cycles_graph(
+        num_first_cycle_nodes, num_second_cycle_nodes, labels, path
+    )
+
+    graph = nx.nx_pydot.read_dot(path)
+
+    nfa = graph_to_nfa(graph, set(), set())
+
+    graph = Graph(graph)
+
+    assert len(nfa.start_states) == len(nfa.final_states) == graph.num_nodes
+    assert nfa.symbols == set(graph.edge_labels)
