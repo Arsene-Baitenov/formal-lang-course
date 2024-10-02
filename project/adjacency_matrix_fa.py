@@ -26,7 +26,7 @@ class AdjacencyMatrixFA:
 
         graph = nfa.to_networkx()
         for from_state, to_state, symbol in graph.edges(data="label"):
-            if symbol:
+            if symbol is not None:
                 self._adjacency_matrices[symbol][
                     self._states[from_state], self._states[to_state]
                 ] = True
@@ -65,7 +65,7 @@ class AdjacencyMatrixFA:
         final_states: Optional[Set[int]] = None,
         adjacency_matrices: Optional[Dict[Any, csr_matrix]] = None,
     ):
-        if nfa:
+        if nfa is not None:
             self._from_nfa(nfa)
         else:
             states_num: int = states_num if states_num else 0
