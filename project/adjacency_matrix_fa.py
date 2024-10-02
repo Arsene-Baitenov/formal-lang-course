@@ -69,6 +69,7 @@ class AdjacencyMatrixFA:
             self._from_nfa(nfa)
         else:
             states_num: int = states_num if states_num else 0
+            states: Dict[Any, int] = states if states else {}
             start_states: Set[int] = start_states if start_states else set()
             final_states: Set[int] = final_states if final_states else set()
             adjacency_matrices: Dict[Any, csr_matrix] = (
