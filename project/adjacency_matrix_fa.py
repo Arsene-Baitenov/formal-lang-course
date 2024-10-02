@@ -186,3 +186,9 @@ class AdjacencyMatrixFA:
             inter_final_states,
             inter_adjacency_matrices,
         )
+
+
+def intersect_automata(
+    automaton1: AdjacencyMatrixFA, automaton2: AdjacencyMatrixFA
+) -> AdjacencyMatrixFA:
+    return automaton1.intersect(automaton2)
