@@ -2,7 +2,7 @@ from typing import Any, cast, Dict, Iterable, Optional, Set
 from scipy.sparse import csr_matrix, kron
 from scipy.sparse.linalg import matrix_power
 
-from pyformlang.finite_automaton import Symbol, NondeterministicFiniteAutomaton, State
+from pyformlang.finite_automaton import Symbol, NondeterministicFiniteAutomaton
 
 
 class AdjacencyMatrixFA:
